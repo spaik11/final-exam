@@ -18,7 +18,6 @@ const addToDigits = (num1, num2) => {
   let Arr2 = num2.toString().split('');
   let result = [];
 
-
   for (let i = 0; i < Arr1.length; i++) {
     result.push(Number(Arr2) + Number(Arr1[i]))
   } 
@@ -42,9 +41,14 @@ const nap = (peoples) => {
 
 
 const findIndices = (arrays, func) => {
-  const result =  arrays.map(array => func(array));
+  const result = [];
   
-  
+  for (let i = 0; i < arrays.length; i++) {
+    if (func(arrays[i])) {
+      result.push(i);
+    }
+  }
+  return result;
 }
 
 const Faqtory = () => {
@@ -61,11 +65,10 @@ const Faqtory = () => {
       this.length++;
     },
 
-    answerQuestions: function(id, answer) {
-      if (this.questions.id === id && this.questions.answer !== '') {
-        this.questions.answer = answer;
-      } else {
-
+    answerQuestion: function(id, input) {
+      const question = this.questions[id];
+      if (!question.answer) {
+      question.answer = input;
       }
     },
   }
