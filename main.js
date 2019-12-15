@@ -13,15 +13,10 @@ const averageDogAge = (pets) => {
   return result / dogsOnly.length;
 }
 
-const addToDigits = (num1, num2) => {
-  let Arr1 = num1.toString().split('');
-  let Arr2 = num2.toString().split('');
-  let result = [];
-
-  for (let i = 0; i < Arr1.length; i++) {
-    result.push(Number(Arr2) + Number(Arr1[i]))
-  } 
-  return Number(result.join(''));
+const addToDigits = (num, modifier) => {
+  return Number(num.toString().split('').map(digit => {
+    return digit = (Number(digit) + modifier).toString().slice(-1)
+    }).join(''))
 }
 
 const nightOwls = (peoples) => {
@@ -41,8 +36,8 @@ const nap = (peoples) => {
 
 
 const findIndices = (arrays, func) => {
-  const result = [];
-  
+  let result = [];
+
   for (let i = 0; i < arrays.length; i++) {
     if (func(arrays[i])) {
       result.push(i);
@@ -66,9 +61,8 @@ const Faqtory = () => {
     },
 
     answerQuestion: function(id, input) {
-      const question = this.questions[id];
-      if (!question.answer) {
-      question.answer = input;
+      if (!this.questions[id].answer) {
+      this.questions[id].answer = input;
       }
     },
   }
